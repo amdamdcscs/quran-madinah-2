@@ -74,7 +74,7 @@ export const highlightArabicText = (text: string, searchTerm: string): string =>
     
     // Check if we're at the start of a match
     if (currentMatch < matches.length && normalizedIndex === matches[currentMatch].start) {
-      result += '<mark class="bg-yellow-300 text-yellow-900 px-1 rounded">';
+      result += '<mark class="bg-yellow-300 dark:bg-yellow-600 text-yellow-900 dark:text-yellow-100 px-1 rounded">';
     }
     
     result += originalChar;

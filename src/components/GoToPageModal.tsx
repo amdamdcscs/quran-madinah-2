@@ -61,9 +61,9 @@ const GoToPageModal: React.FC<GoToPageModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" dir="rtl">
-      <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
+      <div className="bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-4 sm:p-6">
+        <div className="bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-700 dark:to-teal-700 text-white p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Navigation size={20} className="sm:w-6 sm:h-6" />
@@ -82,7 +82,7 @@ const GoToPageModal: React.FC<GoToPageModalProps> = ({
         <div className="p-4 sm:p-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="pageNumber" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="pageNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 رقم الصفحة (1 - {totalPages})
               </label>
               <input
@@ -93,12 +93,12 @@ const GoToPageModal: React.FC<GoToPageModalProps> = ({
                 min="1"
                 max={totalPages}
                 placeholder={`الصفحة الحالية: ${currentPage}`}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-center text-base sm:text-lg"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white dark:bg-gray-800 dark:text-white text-center text-base sm:text-lg"
                 autoFocus
                 dir="ltr"
               />
               {error && (
-                <div className="flex items-center gap-2 mt-2 text-red-600 text-sm">
+                <div className="flex items-center gap-2 mt-2 text-red-600 dark:text-red-400 text-sm">
                   <AlertCircle size={14} className="sm:w-4 sm:h-4" />
                   <span>{error}</span>
                 </div>
@@ -109,13 +109,13 @@ const GoToPageModal: React.FC<GoToPageModalProps> = ({
               <button
                 type="button"
                 onClick={handleClose}
-                className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors active:scale-95 text-sm sm:text-base"
+                className="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors active:scale-95 text-sm sm:text-base"
               >
                 إلغاء
               </button>
               <button
                 type="submit"
-                className="flex-1 px-4 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium active:scale-95 text-sm sm:text-base"
+                className="flex-1 px-4 py-3 bg-emerald-600 dark:bg-emerald-700 text-white rounded-lg hover:bg-emerald-700 dark:hover:bg-emerald-800 transition-colors font-medium active:scale-95 text-sm sm:text-base"
               >
                 انتقال
               </button>
@@ -123,14 +123,14 @@ const GoToPageModal: React.FC<GoToPageModalProps> = ({
           </form>
 
           {/* Quick navigation suggestions */}
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <p className="text-sm text-gray-600 mb-3">انتقال سريع:</p>
+          <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">انتقال سريع:</p>
             <div className="flex flex-wrap gap-2">
               {[1, 50, 100, 200, 300, 400, 500, 604].map((page) => (
                 <button
                   key={page}
                   onClick={() => handleQuickNavigation(page)}
-                  className="px-3 py-1 text-sm bg-emerald-100 text-emerald-700 rounded-full hover:bg-emerald-200 transition-colors active:scale-95"
+                  className="px-3 py-1 text-sm bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-800/50 transition-colors active:scale-95"
                 >
                   {page}
                 </button>
