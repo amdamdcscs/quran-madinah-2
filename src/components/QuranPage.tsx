@@ -325,7 +325,7 @@ const QuranPage: React.FC<QuranPageProps> = ({
 
       {/* Main Content */}
       <main className="flex-1 flex items-center justify-center p-2 sm:p-4 lg:p-4 relative">
-        {/* Juz and Hizb Info - Top Right Overlay */}
+        {/* Juz and Hizb Info - Outside page container */}
         {juzHizbInfo && (
           <div className={`absolute top-4 left-4 z-40 flex flex-col gap-2 transition-all duration-300 ${
             showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -339,7 +339,7 @@ const QuranPage: React.FC<QuranPageProps> = ({
           </div>
         )}
         
-        <div className="relative w-full max-w-4xl">
+        {/* Juz and Hizb Info - Top Right Overlay */}
           {/* Page Image Container */}
           <div className="relative bg-white dark:bg-gray-800 rounded-lg sm:rounded-2xl shadow-xl sm:shadow-2xl overflow-hidden border border-emerald-200 dark:border-gray-700">
             {!imageLoaded && !imageError && (
