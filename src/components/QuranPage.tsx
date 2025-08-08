@@ -154,12 +154,12 @@ const QuranPage: React.FC<QuranPageProps> = ({
       onTouchStart={handleUserInteraction}
       onDoubleClick={handleDoubleClick}
     >
-      {/* Desktop Header - Transparent overlay */}
-      <header className={`hidden lg:block bg-white/60 backdrop-blur-sm border-b border-emerald-200/50 px-4 py-3 shadow-sm transition-all duration-300 ${
+      {/* Desktop Header - Not covering page */}
+      <header className={`hidden lg:block bg-white/80 backdrop-blur-sm border-b border-emerald-200/50 px-4 py-3 shadow-sm transition-all duration-300 ${
         isDarkMode ? 'dark:bg-gray-900/60 dark:border-gray-700/50' : ''
       } ${
         showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      } absolute top-0 left-0 right-0 z-30`}>
+      } z-30`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
@@ -210,18 +210,6 @@ const QuranPage: React.FC<QuranPageProps> = ({
           </div>
           
           <div className="flex items-center gap-4">
-            {/* Juz and Hizb Info */}
-            {juzHizbInfo && (
-              <div className="flex items-center gap-2">
-                <div className="text-emerald-800 dark:text-emerald-200 font-medium bg-white/70 dark:bg-gray-800/70 px-3 py-1 rounded-lg backdrop-blur-sm text-sm">
-                  الجزء {juzHizbInfo.juz}
-                </div>
-                <div className="text-blue-800 dark:text-blue-200 font-medium bg-white/70 dark:bg-gray-800/70 px-3 py-1 rounded-lg backdrop-blur-sm text-sm">
-                  الحزب {juzHizbInfo.hizb}
-                </div>
-              </div>
-            )}
-            
             <div className="text-emerald-800 dark:text-emerald-200 font-medium bg-white/70 dark:bg-gray-800/70 px-3 py-1 rounded-lg backdrop-blur-sm">
               صفحة {currentPage} من {totalPages}
             </div>
@@ -233,12 +221,12 @@ const QuranPage: React.FC<QuranPageProps> = ({
         </div>
       </header>
 
-      {/* Mobile Header - Transparent overlay */}
-      <header className={`lg:hidden bg-white/70 backdrop-blur-sm border-b border-emerald-200/50 shadow-lg transition-all duration-300 ease-in-out ${
+      {/* Mobile Header - Not covering page */}
+      <header className={`lg:hidden bg-white/80 backdrop-blur-sm border-b border-emerald-200/50 shadow-lg transition-all duration-300 ease-in-out ${
         isDarkMode ? 'dark:bg-gray-900/70 dark:border-gray-700/50' : ''
       } ${
         showControls ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-      } absolute top-0 left-0 right-0 z-30`}>
+      } z-30`}>
         <div className="px-4 py-3">
           <div className="flex items-center justify-between">
             <button
@@ -283,19 +271,6 @@ const QuranPage: React.FC<QuranPageProps> = ({
         {/* Mobile Menu Dropdown */}
         {showMobileMenu && (
           <div className="bg-white/80 dark:bg-gray-900/80 border-t border-emerald-200/50 dark:border-gray-700/50 p-4 space-y-3 backdrop-blur-sm">
-            {/* Juz and Hizb Info for Mobile */}
-            {juzHizbInfo && (
-              <div className="flex items-center justify-center gap-4 mb-3 p-3 bg-emerald-50/70 dark:bg-emerald-900/30 rounded-lg">
-                <div className="text-emerald-800 dark:text-emerald-200 font-medium text-sm">
-                  الجزء {juzHizbInfo.juz}
-                </div>
-                <div className="w-1 h-1 bg-emerald-600 rounded-full"></div>
-                <div className="text-blue-800 dark:text-blue-200 font-medium text-sm">
-                  الحزب {juzHizbInfo.hizb}
-                </div>
-              </div>
-            )}
-            
             <button
               onClick={() => {
                 onShowIndex();
@@ -349,7 +324,21 @@ const QuranPage: React.FC<QuranPageProps> = ({
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 flex items-center justify-center p-2 sm:p-4 lg:p-4">
+      <main className="flex-1 flex items-center justify-center p-2 sm:p-4 lg:p-4 relative">
+        {/* Juz and Hizb Info - Top Right Overlay */}
+        {juzHizbInfo && (
+          <div className={`absolute top-4 left-4 z-40 flex flex-col gap-2 transition-all duration-300 ${
+            showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}>
+            <div className="bg-emerald-600/90 dark:bg-emerald-700/90 text-white px-3 py-2 rounded-lg backdrop-blur-sm shadow-lg text-sm font-medium">
+              الجزء {juzHizbInfo.juz}
+            </div>
+            <div className="bg-blue-600/90 dark:bg-blue-700/90 text-white px-3 py-2 rounded-lg backdrop-blur-sm shadow-lg text-sm font-medium">
+              الحزب {juzHizbInfo.hizb}
+            </div>
+          </div>
+        )}
+        
         <div className="relative w-full max-w-4xl">
           {/* Page Image Container */}
           <div className="relative bg-white dark:bg-gray-800 rounded-lg sm:rounded-2xl shadow-xl sm:shadow-2xl overflow-hidden border border-emerald-200 dark:border-gray-700">
@@ -416,12 +405,12 @@ const QuranPage: React.FC<QuranPageProps> = ({
         </div>
       </main>
 
-      {/* Mobile Footer Navigation - Transparent overlay */}
-      <footer className={`lg:hidden bg-white/70 backdrop-blur-sm border-t border-emerald-200/50 px-4 py-3 shadow-lg transition-all duration-300 ease-in-out ${
+      {/* Mobile Footer Navigation - Not covering page */}
+      <footer className={`lg:hidden bg-white/80 backdrop-blur-sm border-t border-emerald-200/50 px-4 py-3 shadow-lg transition-all duration-300 ease-in-out ${
         isDarkMode ? 'dark:bg-gray-900/70 dark:border-gray-700/50' : ''
       } ${
         showControls ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
-      } absolute bottom-0 left-0 right-0 z-30`}>
+      } z-30`}>
         <div className="flex items-center justify-center gap-4">
           <button
             onClick={handlePrevPage}
@@ -438,12 +427,6 @@ const QuranPage: React.FC<QuranPageProps> = ({
               <span className="text-emerald-600 dark:text-emerald-400 text-sm">/</span>
               <span className="text-emerald-600 dark:text-emerald-400 text-sm">{totalPages}</span>
             </div>
-            {juzHizbInfo && (
-              <div className="flex items-center gap-2 text-xs">
-                <span className="text-emerald-700 dark:text-emerald-300">ج{juzHizbInfo.juz}</span>
-                <span className="text-blue-700 dark:text-blue-300">ح{juzHizbInfo.hizb}</span>
-              </div>
-            )}
           </div>
           
           <button
@@ -457,12 +440,12 @@ const QuranPage: React.FC<QuranPageProps> = ({
         </div>
       </footer>
 
-      {/* Desktop Footer Navigation - Transparent overlay */}
-      <footer className={`hidden lg:block bg-white/60 backdrop-blur-sm border-t border-emerald-200/50 px-4 py-3 transition-all duration-300 ${
+      {/* Desktop Footer Navigation - Not covering page */}
+      <footer className={`hidden lg:block bg-white/80 backdrop-blur-sm border-t border-emerald-200/50 px-4 py-3 transition-all duration-300 ${
         isDarkMode ? 'dark:bg-gray-900/60 dark:border-gray-700/50' : ''
       } ${
         showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      } absolute bottom-0 left-0 right-0 z-30`}>
+      } z-30`}>
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-4">
           <button
             onClick={handlePrevPage}
@@ -479,12 +462,6 @@ const QuranPage: React.FC<QuranPageProps> = ({
               <span className="text-emerald-600 dark:text-emerald-400">/</span>
               <span className="text-emerald-600 dark:text-emerald-400">{totalPages}</span>
             </div>
-            {juzHizbInfo && (
-              <div className="flex items-center gap-3 text-sm">
-                <span className="text-emerald-700 dark:text-emerald-300 font-medium">الجزء {juzHizbInfo.juz}</span>
-                <span className="text-blue-700 dark:text-blue-300 font-medium">الحزب {juzHizbInfo.hizb}</span>
-              </div>
-            )}
           </div>
           
           <button
